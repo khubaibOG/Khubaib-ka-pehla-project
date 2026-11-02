@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0D0518] text-[#F5F3FF] font-sans antialiased;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0D0518;
+}
+::-webkit-scrollbar-thumb {
+  background: #3B1C5A;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #EC4899;
+}
+
+.noise-bg {
+  background-image: radial-gradient(rgba(244, 114, 182, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.4); opacity: 0; }
+  100% { transform: scale(0.95); opacity: 0; }
+}
+.status-pulse {
+  animation: pulse-ring 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+.glassmorphic {
+  background: rgba(18, 8, 30, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Logo Dynamic Animations */
+@keyframes logo-spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes logo-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.logo-ring-rotate {
+  animation: logo-spin-slow 22s linear infinite;
+}
+.group:hover .logo-ring-rotate {
+  animation-duration: 7s;
+}
+.logo-shimmer-text {
+  background: linear-gradient(90deg, #FFFFFF 0%, #EC4899 50%, #C084FC 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-position 0.6s ease;
+}
+.group:hover .logo-shimmer-text {
+  animation: logo-shimmer 2.2s linear infinite;
+}
+.logo-monogram-box {
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.group:hover .logo-monogram-box {
+  transform: rotate(45deg) scale(1.08);
+  background-color: #2E1065;
+  color: #FDF2F8;
+  box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.45);
+  border-color: #EC4899;
+}
+.group:hover .logo-monogram-inner {
+  transform: rotate(-45deg);
+}
+.logo-bracket-pulse {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.group:hover .logo-bracket-left {
+  transform: translateX(-3px);
+  opacity: 1;
+}
+.group:hover .logo-bracket-right {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+

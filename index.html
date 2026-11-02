@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATELIER CARMINE | Haute Coiffure & Luxury Lounge</title>
+  <meta name="description" content="Ultra-luxury bespoke grooming lounge. 80% Imperial Velvet Purple canvas with 20% Haute Pink precision accents.">
+
+  <!-- Google Fonts: Cormorant Garamond, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Config: 80% Imperial Deep Purple & 20% Haute Vivid Pink -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            // 80% Canvas: Layered Royal & Imperial Purples
+            canvas: {
+              DEFAULT: '#0D0518',
+              card: '#160B24',
+              surface: '#200F35',
+              hover: '#291444',
+              hairline: '#3B1D5C'
+            },
+            // Text Neutrals
+            obsidian: '#FFFFFF',
+            charcoal: '#F5F3FF',
+            graphite: '#C4B5FD',      // Soft luminous lavender
+            porcelain: '#160B24',     // Dark velvet purple card
+            alabaster: '#200F35',
+            hairline: '#3B1D5C',      // Deep purple hairline border
+            // 20% Accent: Tailored Haute Pink System
+            pink: {
+              DEFAULT: '#EC4899',     // Haute Pink
+              dark: '#BE185D',        // Crimson Wine Pink
+              light: '#F472B6',       // Neon Rose Pink
+              glow: 'rgba(236, 72, 153, 0.28)',
+              subtle: 'rgba(236, 72, 153, 0.12)'
+            },
+            carmine: {
+              DEFAULT: '#EC4899',     // Compatible mapping
+              dark: '#BE185D',
+              light: '#F472B6',
+              glow: 'rgba(236, 72, 153, 0.28)'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          letterSpacing: {
+            'ultra-wide': '0.35em',
+            'widest-bespoke': '0.22em'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React 18 & ReactDOM via CDN for immediate zero-build execution -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Babel Standalone for on-the-fly JSX compilation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0D0518; }
+    ::-webkit-scrollbar-thumb { background: #3B1D5C; border-radius: 2px; }
+    ::-webkit-scrollbar-thumb:hover { background: #EC4899; }
+    
+    .noise-bg {
+      background-image: radial-gradient(rgba(244, 114, 182, 0.05) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.4); opacity: 0; }
+      100% { transform: scale(0.95); opacity: 0; }
+    }
+    .status-pulse { animation: pulse-ring 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite; }
+
+    .glassmorphic {
+      background: rgba(16, 7, 28, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    /* Logo Dynamic Animations */
+    @keyframes logo-spin-slow {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes logo-shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .logo-ring-rotate {
+      animation: logo-spin-slow 22s linear infinite;
+    }
+    .group:hover .logo-ring-rotate {
+      animation-duration: 7s;
+    }
+    .logo-shimmer-text {
+      background: linear-gradient(90deg, #FFFFFF 0%, #EC4899 50%, #C084FC 100%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      transition: background-position 0.6s ease;
+    }
+    .group:hover .logo-shimmer-text {
+      animation: logo-shimmer 2.2s linear infinite;
+    }
+    .logo-monogram-box {
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .group:hover .logo-monogram-box {
+      transform: rotate(45deg) scale(1.08);
+      background-color: #2E1065;
+      color: #FDF2F8;
+      box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.45);
+      border-color: #EC4899;
+    }
+    .group:hover .logo-monogram-inner {
+      transform: rotate(-45deg);
+    }
+    .logo-bracket-pulse {
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .group:hover .logo-bracket-left {
+      transform: translateX(-3px);
+      opacity: 1;
+    }
+    .group:hover .logo-bracket-right {
+      transform: translateX(3px);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-[#0D0518] text-[#F5F3FF] font-sans antialiased selection:bg-pink selection:text-white noise-bg">
+
+  <div id="root"></div>
+
+  <!-- React Application Component Scripts -->
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // --- CURATED DATA ---
+    const SERVICES_DATA = {
+      hair: [
+        {
+          id: 'h1',
+          name: 'Bespoke Scissor Cut',
+          duration: '50 MIN',
+          price: 95,
+          desc: 'Architectural cranial mapping and shear sculpting tailored to bone structure, hair density, and lifestyle flow.',
+          inclusions: ['Cranial Consultation', 'Purifying Scalp Cleansing', 'Blowout & Matte Finish']
+        },
+        {
+          id: 'h2',
+          name: 'Precision Fade & Contour',
+          duration: '45 MIN',
+          price: 85,
+          desc: 'Micro-graduated skin taper executed with master Japanese clippers and foil zero-gap edge refinement.',
+          inclusions: ['Zero Gap Razor Foil', 'Eucalyptus Cold Mist', 'Edge Alignment']
+        },
+        {
+          id: 'h3',
+          name: 'Scalp Detox & Thermal Wash',
+          duration: '40 MIN',
+          price: 75,
+          desc: 'Exfoliating botanical clay infusion followed by high-pressure thermal ozone rinse to unblock dormant follicles.',
+          inclusions: ['Volcanic Sea Clay Mask', 'Ozone Steam Dome', 'Rosemary Scalp Tonic']
+        },
+        {
+          id: 'h4',
+          name: 'Grey Blending Camouflage',
+          duration: '35 MIN',
+          price: 70,
+          desc: 'Subtle semi-permanent pigment application that blends silver strands naturally without looking colored or dense.',
+          inclusions: ['Custom Tonal Match', 'Dermis Barrier Prep', '5-Minute Rapid Washout']
+        }
+      ],
+      beard: [
+        {
+          id: 'b1',
+          name: 'Traditional Hot Towel Straight Razor Shave',
+          duration: '45 MIN',
+          price: 80,
+          desc: 'Three-pass single-use Japanese Feather razor shave with steaming bergamot towels and badger-hair lather ceremony.',
+          inclusions: ['3 Pre-Shave Essential Oils', 'Dual Hot Towels', 'Cold Alum Block Finish']
+        },
+        {
+          id: 'b2',
+          name: 'Beard Sculpting & Botanical Conditioning',
+          duration: '40 MIN',
+          price: 65,
+          desc: 'Symmetrical jawline architecture, cheek taper, and warm ozone beard steam with cedarwood oil absorption.',
+          inclusions: ['Cranial Lineup', 'Heated Beard Steam', 'Organic Balm Sealing']
+        },
+        {
+          id: 'b3',
+          name: 'Line-up & Precision Edge',
+          duration: '25 MIN',
+          price: 45,
+          desc: 'Crisp perimeter line enhancement across hairline, sideburns, and neck with straight razor detailing.',
+          inclusions: ['Razor Edge Definition', 'Alcohol-Free Witch Hazel', 'Moisture Barrier']
+        }
+      ],
+      recovery: [
+        {
+          id: 'r1',
+          name: 'Japanese Head Spa & Cranial Acupressure',
+          duration: '50 MIN',
+          price: 110,
+          desc: 'Centuries-old Japanese scalp therapy stimulating pressure points along the sagittal suture to alleviate tension and fatigue.',
+          inclusions: ['10-Point Acupressure', 'Heated Waterfall Rinse', 'Botanical Serum Infusion']
+        },
+        {
+          id: 'r2',
+          name: 'Shoulder & Neck Pressure-Point Therapy',
+          duration: '30 MIN',
+          price: 65,
+          desc: 'Targeted deep-tissue ergonomics focusing on the trapezius and suboccipital muscles for desk-bound executives.',
+          inclusions: ['Arnica & Mint Massage Wax', 'Heated Neck Bolster', 'Posture Reset']
+        },
+        {
+          id: 'r3',
+          name: 'Hot Stone Facial & Jade Roller Reset',
+          duration: '35 MIN',
+          price: 75,
+          desc: 'Basalt volcanic stones and cryo jade rolling to eliminate lymphatic facial puffiness and stimulate microcirculation.',
+          inclusions: ['Warm Volcanic Basalt Stones', 'Cryo Jade Sculpting', 'Hyaluronic Acid Surge']
+        }
+      ]
+    };
+
+    const SIGNATURE_SUITES = [
+      {
+        id: 's1',
+        name: 'The Executive Ritual',
+        tag: 'Flagship',
+        duration: '90 MIN',
+        price: 185,
+        isFlagship: true,
+        desc: 'Our most celebrated full-spectrum appointment designed for board-level presence and restorative calm.',
+        inclusions: [
+          'Bespoke Scissor Architecture & Haircut',
+          'Traditional Japanese Feather Straight Razor Shave',
+          'Aromatic Eucalyptus Hot Towel Scalp Therapy',
+          'Rare Japanese Hibiki Whisky or Cold Brew Pour'
+        ]
+      },
+      {
+        id: 's2',
+        name: "The Groom's Delegation",
+        tag: 'Bespoke Event',
+        duration: '120 MIN',
+        price: 260,
+        desc: 'Head-to-toe structural grooming for weddings, galas, and life milestones. Complete photographic readiness.',
+        inclusions: [
+          'Custom Precision Scissor or Zero Fade',
+          'Sculpted Beard Architecture & Botanical Oil Seal',
+          '20-Min Deep Tissue Scalp & Neck Release',
+          'Charcoal Clarifying Facial & Cold Jade Roll'
+        ]
+      },
+      {
+        id: 's3',
+        name: 'Quick Refresher',
+        tag: 'Maintenance',
+        duration: '45 MIN',
+        price: 95,
+        desc: 'Rapid turnaround maintenance between major haircuts. Crisp silhouette and razor perimeter refinement.',
+        inclusions: [
+          'Taper / Fade Perimeter Resurfacing',
+          'Beard Contouring & Cheek Line Razor Pass',
+          'Hot Towel Refresh with Bergamot Mist',
+          'Matte Paste Styling & Blowout'
+        ]
+      }
+    ];
+
+    const ARTISANS = [
+      {
+        name: 'Kenji Takahashi',
+        chair: 'Chair 01',
+        title: 'Creative Director & Master Scissorist',
+        experience: '16 Years (Ginza & NYC)',
+        signature: 'Bespoke Scissor Architecture',
+        imageUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        name: 'Julian Vance',
+        chair: 'Chair 02',
+        title: 'Lead Fade & Silhouette Specialist',
+        experience: '12 Years (London Mayfair)',
+        signature: 'Seamless Skin Tapers & Edge',
+        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        name: 'Mateo Russo',
+        chair: 'Chair 03',
+        title: 'Master Barber & Straight Razor Craftsman',
+        experience: '14 Years (Milan & Rome)',
+        signature: 'Hot Towel Shave & Beard Art',
+        imageUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        name: 'Aria Chen',
+        chair: 'Chair 04',
+        title: 'Trichologist & Head Spa Specialist',
+        experience: '10 Years (Kyoto Spa Academy)',
+        signature: 'Pressure-Point & Scalp Detox',
+        imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'
+      }
+    ];
+
+    const ADDONS = [
+      { id: 'addon-headspa', name: 'Japanese Scalp Detox Mask', duration: '+15 MIN', price: 45 },
+      { id: 'addon-beardnourish', name: 'Cedarwood Beard Deep-Steam & Conditioning', duration: '+15 MIN', price: 35 },
+      { id: 'addon-camo', name: 'Subtle Grey Camouflage Beard & Temple Touch', duration: '+20 MIN', price: 55 }
+    ];
+
+    // --- MAIN REACT APPLICATION ---
+    function App() {
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+      const [catalogMode, setCatalogMode] = useState('alacarte');
+      const [activeCategory, setActiveCategory] = useState('hair');
+      const [bookingDrawerOpen, setBookingDrawerOpen] = useState(false);
+      const [bookingStep, setBookingStep] = useState(1);
+      
+      const [selectedService, setSelectedService] = useState({
+        name: 'The Executive Ritual',
+        price: 185,
+        duration: '90 MIN',
+        category: 'Signature Suite'
+      });
+      const [selectedAddons, setSelectedAddons] = useState([]);
+      const [selectedDate, setSelectedDate] = useState('Today (Nov 3)');
+      const [selectedTime, setSelectedTime] = useState('02:30 PM');
+      const [selectedBarber, setSelectedBarber] = useState('Kenji Takahashi');
+      const [clientInfo, setClientInfo] = useState({ name: '', phone: '', email: '', notes: '' });
+
+      const [currentTimeStr, setCurrentTimeStr] = useState('');
+
+      useEffect(() => {
+        const updateClock = () => {
+          const now = new Date();
+          const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: 'America/New_York' };
+          setCurrentTimeStr(`New York Time: ${now.toLocaleTimeString('en-US', options)} (EST)`);
+        };
+        updateClock();
+        const interval = setInterval(updateClock, 1000);
+        return () => clearInterval(interval);
+      }, []);
+
+      const openBooking = (prefill = {}) => {
+        if (prefill.name) {
+          setSelectedService({
+            name: prefill.name,
+            price: prefill.price || 95,
+            duration: prefill.duration || '60 MIN',
+            category: prefill.category || 'Curated Grooming'
+          });
+        }
+        if (prefill.barber) setSelectedBarber(prefill.barber);
+        if (prefill.time) setSelectedTime(prefill.time);
+        setBookingStep(1);
+        setBookingDrawerOpen(true);
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeBooking = () => {
+        setBookingDrawerOpen(false);
+        document.body.style.overflow = '';
+      };
+
+      const toggleAddon = (addonId) => {
+        if (selectedAddons.includes(addonId)) {
+          setSelectedAddons(selectedAddons.filter(id => id !== addonId));
+        } else {
+          setSelectedAddons([...selectedAddons, addonId]);
+        }
+      };
+
+      const addonsTotal = selectedAddons.reduce((sum, id) => {
+        const item = ADDONS.find(a => a.id === id);
+        return sum + (item ? item.price : 0);
+      }, 0);
+      const totalInvestment = selectedService.price + addonsTotal;
+
+      return (
+        <div className="bg-[#0D0518] text-[#F5F3FF] min-h-screen">
+          
+          {/* HEADER */}
+          <header className="fixed top-0 left-0 right-0 z-40 py-4 px-6 md:px-12 flex justify-between items-center glassmorphic border-b border-[#3B1D5C]">
+            <a href="#" className="group flex items-center space-x-3.5 focus:outline-none select-none">
+              {/* Animated Bespoke Monogram Icon */}
+              <div className="relative w-10 h-10 flex items-center justify-center">
+                <svg className="absolute inset-0 w-full h-full logo-ring-rotate pointer-events-none" viewBox="0 0 44 44">
+                  <circle
+                    cx="22"
+                    cy="22"
+                    r="20"
+                    fill="none"
+                    stroke="#EC4899"
+                    strokeWidth="1.2"
+                    strokeDasharray="4 6"
+                    className="opacity-50 group-hover:opacity-100 transition-opacity duration-500"
+                  />
+                </svg>
+
+                <span className="logo-bracket-pulse logo-bracket-left absolute -left-1 top-1 text-[8px] font-mono text-pink opacity-0 group-hover:opacity-100 transition-all duration-300">「</span>
+                <span className="logo-bracket-pulse logo-bracket-right absolute -right-1 bottom-1 text-[8px] font-mono text-pink opacity-0 group-hover:opacity-100 transition-all duration-300">」</span>
+
+                <div className="logo-monogram-box relative w-8 h-8 border border-pink/40 bg-[#160B24] backdrop-blur-sm flex items-center justify-center font-serif text-base tracking-wider font-bold">
+                  <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-pink rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></span>
+                  <span className="logo-monogram-inner text-[#F5F3FF] transition-transform duration-500 inline-block">AC</span>
+                </div>
+              </div>
+
+              {/* Brand Typographic Wordmark with shimmer gradient effect */}
+              <div className="flex flex-col">
+                <div className="flex items-center space-x-1.5">
+                  <span className="font-serif text-xl tracking-widest-bespoke uppercase font-medium leading-none logo-shimmer-text">
+                    Atelier Carmine
+                  </span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-pink transform scale-75 group-hover:scale-125 transition-transform duration-300"></span>
+                </div>
+                <div className="flex items-center space-x-2 mt-1">
+                  <span className="font-mono text-[9px] tracking-ultra-wide uppercase text-graphite/80 group-hover:text-pink transition-colors duration-300">
+                    Haute Grooming Lounge
+                  </span>
+                  <span className="h-px w-0 group-hover:w-4 bg-pink transition-all duration-300"></span>
+                </div>
+              </div>
+            </a>
+
+            <nav className="hidden lg:flex items-center space-x-1 border border-[#3B1D5C] bg-[#160B24]/90 shadow-sm px-4 py-1.5 rounded-full text-xs font-mono tracking-widest uppercase">
+              <a href="#services" className="px-3.5 py-1.5 rounded-full text-graphite hover:text-pink hover:bg-[#200F35] transition-all">Services</a>
+              <a href="#packages" className="px-3.5 py-1.5 rounded-full text-graphite hover:text-pink hover:bg-[#200F35] transition-all">The Rituals</a>
+              <a href="#experience" className="px-3.5 py-1.5 rounded-full text-graphite hover:text-pink hover:bg-[#200F35] transition-all">The Craft</a>
+              <a href="#barbers" className="px-3.5 py-1.5 rounded-full text-graphite hover:text-pink hover:bg-[#200F35] transition-all">Artisans</a>
+              <a href="#hours-location" className="px-3.5 py-1.5 rounded-full text-graphite hover:text-pink hover:bg-[#200F35] transition-all">Sanctuary</a>
+            </nav>
+
+            <div className="flex items-center space-x-4">
+              <div className="hidden sm:flex items-center space-x-2 text-[11px] font-mono text-graphite bg-[#160B24] px-3 py-1.5 rounded-full border border-[#3B1D5C]">
+                <span className="relative flex h-2 w-2">
+                  <span className="status-pulse absolute inline-flex h-full w-full rounded-full bg-pink-light opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-pink"></span>
+                </span>
+                <span className="tracking-wider uppercase text-[10px] text-pink-light">Open Until 9 PM</span>
+              </div>
+
+              <button 
+                onClick={() => openBooking()} 
+                className="relative group bg-pink text-white text-xs font-mono tracking-widest uppercase px-5 py-2.5 rounded-full shadow-lg shadow-pink/20 hover:bg-pink-dark transition-all duration-300 flex items-center space-x-2 active:scale-95 font-semibold"
+              >
+                <span>Book Appointment</span>
+                <span className="text-sm">&rarr;</span>
+              </button>
+
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
+                className="lg:hidden p-2 text-graphite hover:text-pink focus:outline-none"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+              </button>
+            </div>
+          </header>
+
+          {/* MOBILE DRAWER */}
+          <div className={`fixed inset-0 z-50 bg-[#0D0518]/98 backdrop-blur-2xl flex flex-col justify-between p-8 transform transition-transform duration-500 ease-in-out lg:hidden ${
+            mobileMenuOpen ? 'translate-y-0' : '-translate-y-full pointer-events-none'
+          }`}>
+            <div className="flex justify-between items-center border-b border-[#3B1D5C] pb-6">
+              <div className="group flex items-center space-x-3.5 select-none">
+                <div className="relative w-9 h-9 flex items-center justify-center">
+                  <svg className="absolute inset-0 w-full h-full logo-ring-rotate" viewBox="0 0 44 44">
+                    <circle cx="22" cy="22" r="20" fill="none" stroke="#EC4899" strokeWidth="1.2" strokeDasharray="4 6" className="opacity-60" />
+                  </svg>
+                  <div className="w-7 h-7 border border-pink/50 flex items-center justify-center font-serif text-sm font-bold bg-[#160B24] text-white">
+                    <span>AC</span>
+                  </div>
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-serif text-lg tracking-widest uppercase font-medium text-white">Atelier Carmine</span>
+                  <span className="font-mono text-[8px] tracking-ultra-wide uppercase text-pink">Haute Lounge</span>
+                </div>
+              </div>
+              <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-graphite hover:text-pink text-xl font-mono">✕</button>
+            </div>
+
+            <div className="flex flex-col space-y-6 my-auto text-left">
+              {[
+                { href: '#services', label: 'Curated Services', id: '01' },
+                { href: '#packages', label: 'Signature Suites', id: '02' },
+                { href: '#experience', label: 'The Craft', id: '03' },
+                { href: '#barbers', label: 'Master Artisans', id: '04' },
+                { href: '#hours-location', label: 'Private Sanctuary', id: '05' }
+              ].map(item => (
+                <a 
+                  key={item.id} 
+                  href={item.href} 
+                  onClick={() => setMobileMenuOpen(false)} 
+                  className="font-serif text-3xl sm:text-4xl text-white hover:text-pink transition-colors flex items-center justify-between border-b border-[#3B1D5C] pb-4"
+                >
+                  <span>{item.label}</span>
+                  <span className="font-mono text-xs text-pink tracking-widest">{item.id}</span>
+                </a>
+              ))}
+            </div>
+
+            <div className="space-y-4 pt-6 border-t border-[#3B1D5C]">
+              <button 
+                onClick={() => { setMobileMenuOpen(false); openBooking(); }} 
+                className="w-full bg-pink text-white py-4 rounded-full font-mono text-xs tracking-widest uppercase flex items-center justify-center space-x-2 font-bold shadow-lg shadow-pink/30"
+              >
+                <span>Reserve Your Chair</span>
+              </button>
+              <div className="flex justify-between items-center text-xs font-mono text-graphite">
+                <span>742 Madison Ave, New York</span>
+                <span className="text-pink">VIP: +1 (212) 844-9100</span>
+              </div>
+            </div>
+          </div>
+
+          {/* HERO (80% Deep Purple Canvas / 20% Haute Pink Accent) */}
+          <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+              
+              <div className="lg:col-span-7 space-y-8">
+                <div 
+                  onClick={() => openBooking({ time: '02:30 PM' })}
+                  className="inline-flex items-center space-x-3 bg-[#160B24] border border-[#3B1D5C] px-4 py-2 rounded-full shadow-sm hover:border-pink/60 transition-colors cursor-pointer"
+                >
+                  <span className="w-2 h-2 rounded-full bg-pink animate-ping"></span>
+                  <span className="font-mono text-[11px] tracking-wider uppercase text-graphite">Next Available Chair:</span>
+                  <span className="font-mono text-xs font-semibold text-pink underline decoration-pink/40 underline-offset-4">2:30 PM Today</span>
+                  <span className="text-pink text-xs">&rarr;</span>
+                </div>
+
+                <div className="space-y-3">
+                  <p className="font-mono text-xs uppercase tracking-ultra-wide text-pink font-semibold">Private Grooming Lounge &bull; Est. 2018</p>
+                  <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal leading-[0.95] tracking-tight text-white">
+                    Precision cut. <br/>
+                    <span className="italic font-light text-pink">Singular</span> ritual.
+                  </h1>
+                </div>
+
+                <p className="text-base sm:text-lg text-graphite font-light max-w-xl leading-relaxed">
+                  Where traditional Japanese steel craftsmanship meets contemporary architectural grooming in a private imperial purple sanctuary.
+                </p>
+
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-5 pt-2">
+                  <button 
+                    onClick={() => openBooking()} 
+                    className="px-8 py-4 bg-pink text-white rounded-full font-mono text-xs tracking-widest uppercase hover:bg-pink-dark shadow-xl shadow-pink/25 transition-all duration-300 flex items-center justify-center space-x-3 active:scale-95 font-semibold"
+                  >
+                    <span>Reserve Your Chair</span>
+                    <span>&rarr;</span>
+                  </button>
+                  <a 
+                    href="#packages" 
+                    className="px-8 py-4 border border-pink/30 text-white rounded-full font-mono text-xs tracking-widest uppercase hover:border-pink hover:text-pink transition-all duration-300 flex items-center justify-center space-x-3 bg-[#160B24]/60"
+                  >
+                    <span>Explore Packages</span>
+                    <span>&darr;</span>
+                  </a>
+                </div>
+
+                <div className="pt-8 border-t border-[#3B1D5C] flex flex-wrap items-center gap-6 sm:gap-12 text-graphite font-mono text-xs">
+                  <div>
+                    <div className="flex items-center space-x-1 text-pink">
+                      <span className="text-pink">&#9733;</span>
+                      <span className="font-bold text-white text-sm">4.9 / 5.0</span>
+                    </div>
+                    <span className="text-[11px] text-graphite/80 uppercase tracking-wider">1,200+ Discerning Clients</span>
+                  </div>
+                  <div className="h-8 w-px bg-[#3B1D5C]"></div>
+                  <div>
+                    <span className="block font-bold text-white text-sm font-sans">Feather Japan &trade;</span>
+                    <span className="text-[11px] text-graphite/80 uppercase tracking-wider">Sterile Single-Use Steel</span>
+                  </div>
+                  <div className="h-8 w-px bg-[#3B1D5C] hidden sm:block"></div>
+                  <div className="hidden sm:block">
+                    <span className="block font-bold text-white text-sm font-sans">Velvet Lounge</span>
+                    <span className="text-[11px] text-graphite/80 uppercase tracking-wider">Japanese Whisky & Cold Brew</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="lg:col-span-5 relative">
+                <div className="relative mx-auto max-w-md lg:max-w-none">
+                  <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-[#160B24] border border-[#3B1D5C] shadow-2xl relative group">
+                    <img 
+                      src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1200&q=80" 
+                      alt="Bespoke Barbering Craft" 
+                      className="w-full h-full object-cover object-center grayscale contrast-125 transition-transform duration-700 group-hover:scale-105 opacity-90"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D0518] via-transparent to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 right-6 text-white p-4 glassmorphic rounded-xl border border-pink/20">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="font-mono text-[10px] tracking-ultra-wide uppercase text-pink-light">Chair 01 &bull; Master Barber</span>
+                        <span className="font-mono text-xs text-graphite">Madison Ave</span>
+                      </div>
+                      <p className="font-serif text-lg italic text-white/90">"Every haircut is tailored to cranial architecture and natural flow."</p>
+                    </div>
+                  </div>
+
+                  <div className="absolute -top-6 -left-6 bg-[#160B24] p-5 rounded-xl shadow-xl border border-pink/30 max-w-[210px] hidden sm:block">
+                    <span className="font-mono text-[10px] font-semibold uppercase tracking-widest text-pink block mb-1">Sanctuary Standard</span>
+                    <p className="text-xs text-graphite leading-relaxed">Private acoustic suites with dedicated airflow & bespoke acoustics.</p>
+                  </div>
+
+                  {/* Ambient Pink Glow */}
+                  <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-pink/20 rounded-full blur-3xl -z-10"></div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          {/* CURATED SERVICES & PACKAGES */}
+          <section id="services" className="py-24 bg-[#120722] border-t border-b border-[#3B1D5C] relative scroll-mt-20">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+              
+              <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                  <span className="font-mono text-xs uppercase tracking-ultra-wide text-pink font-semibold block mb-2">// 01 &bull; Service Taxonomy</span>
+                  <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal text-white tracking-tight">The Curated Menu</h2>
+                  <p className="text-graphite text-sm sm:text-base mt-2 max-w-md">Select individually crafted treatments or explore all-inclusive signature grooming suites.</p>
+                </div>
+
+                <div className="inline-flex p-1.5 bg-[#160B24] border border-[#3B1D5C] rounded-full shadow-sm self-start md:self-end">
+                  <button 
+                    onClick={() => setCatalogMode('alacarte')}
+                    className={`px-5 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
+                      catalogMode === 'alacarte' ? 'bg-pink text-white font-semibold shadow-sm' : 'text-graphite hover:text-pink font-medium'
+                    }`}
+                  >
+                    A La Carte
+                  </button>
+                  <button 
+                    onClick={() => setCatalogMode('bundles')}
+                    className={`px-5 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all duration-200 ${
+                      catalogMode === 'bundles' ? 'bg-pink text-white font-semibold shadow-sm' : 'text-graphite hover:text-pink font-medium'
+                    }`}
+                  >
+                    Signature Suites (Bundles)
+                  </button>
+                </div>
+              </div>
+
+              {/* A LA CARTE */}
+              {catalogMode === 'alacarte' && (
+                <div className="space-y-12">
+                  <div className="flex items-center space-x-2 sm:space-x-4 border-b border-[#3B1D5C] pb-4 overflow-x-auto no-scrollbar font-mono text-xs tracking-wider uppercase">
+                    {[
+                      { key: 'hair', label: 'Hair Care (04)' },
+                      { key: 'beard', label: 'Beard & Shave (03)' },
+                      { key: 'recovery', label: 'Massage & Recovery (03)' }
+                    ].map(tab => (
+                      <button 
+                        key={tab.key}
+                        onClick={() => setActiveCategory(tab.key)} 
+                        className={`px-4 py-2 rounded-lg transition-all ${
+                          activeCategory === tab.key ? 'text-pink border-b-2 border-pink font-semibold bg-pink/10' : 'text-graphite hover:text-white'
+                        }`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                    {SERVICES_DATA[activeCategory].map((service, index) => (
+                      <div key={service.id} className="border-b border-[#3B1D5C] pb-8 pt-2 group transition-all duration-200">
+                        <div className="flex justify-between items-baseline mb-2">
+                          <div className="flex items-center space-x-3">
+                            <span className="font-mono text-xs text-pink font-semibold">0{index + 1}</span>
+                            <h3 className="font-serif text-2xl font-normal text-white group-hover:text-pink transition-colors">
+                              {service.name}
+                            </h3>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <span className="font-mono text-xs text-graphite bg-[#160B24] px-2.5 py-0.5 rounded-full border border-[#3B1D5C]">{service.duration}</span>
+                            <span className="font-mono text-xl font-bold text-pink tracking-tight">${service.price}</span>
+                          </div>
+                        </div>
+
+                        <p className="text-graphite text-xs sm:text-sm leading-relaxed mb-4 pl-7">
+                          {service.desc}
+                        </p>
+
+                        <div className="pl-7 flex flex-wrap items-center justify-between gap-3">
+                          <div className="flex items-center space-x-2 text-[11px] font-mono text-graphite/80">
+                            <span className="text-pink">&bull;</span>
+                            <span>Includes: {service.inclusions.join(' &bull; ')}</span>
+                          </div>
+                          <button 
+                            onClick={() => openBooking({
+                              name: service.name,
+                              price: service.price,
+                              duration: service.duration,
+                              category: activeCategory.toUpperCase()
+                            })}
+                            className="px-4 py-1.5 rounded-full border border-pink/40 hover:border-pink hover:bg-pink hover:text-white font-mono text-[11px] uppercase tracking-wider font-medium text-pink transition-all duration-200"
+                          >
+                            + Select Service
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* BUNDLES */}
+              {catalogMode === 'bundles' && (
+                <div className="space-y-8" id="packages">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {SIGNATURE_SUITES.map((suite, idx) => (
+                      <div 
+                        key={suite.id}
+                        className={`bg-[#160B24] rounded-2xl p-8 relative flex flex-col justify-between group transition-all duration-300 ${
+                          suite.isFlagship ? 'border-2 border-pink shadow-xl shadow-pink/15' : 'border border-[#3B1D5C] hover:border-pink/60 shadow-sm'
+                        }`}
+                      >
+                        <div className="absolute top-0 right-8 transform -translate-y-1/2">
+                          <span className={`text-white text-[10px] font-mono uppercase tracking-widest px-3 py-1 rounded-full shadow ${
+                            suite.isFlagship ? 'bg-pink font-bold' : 'bg-[#200F35] border border-[#3B1D5C]'
+                          }`}>
+                            {suite.tag}
+                          </span>
+                        </div>
+
+                        <div>
+                          <div className="flex justify-between items-baseline mb-4">
+                            <span className="font-mono text-xs tracking-widest uppercase text-graphite">Suite 0{idx + 1} &bull; {suite.duration}</span>
+                            <span className="font-mono text-2xl font-bold text-pink">${suite.price}</span>
+                          </div>
+                          <h3 className="font-serif text-3xl font-normal text-white group-hover:text-pink transition-colors mb-3">
+                            {suite.name}
+                          </h3>
+                          <p className="text-graphite text-xs sm:text-sm leading-relaxed mb-6">
+                            {suite.desc}
+                          </p>
+
+                          <div className="border-t border-[#3B1D5C] pt-4 mb-6 space-y-3 font-mono text-xs text-graphite">
+                            {suite.inclusions.map((inc, i) => (
+                              <div key={i} className="flex items-center space-x-2">
+                                <span className="text-pink font-bold">&#10003;</span>
+                                <span>{inc}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <button 
+                          onClick={() => openBooking({
+                            name: suite.name,
+                            price: suite.price,
+                            duration: suite.duration,
+                            category: 'SIGNATURE SUITE'
+                          })}
+                          className={`w-full py-3.5 rounded-xl font-mono text-xs tracking-widest uppercase font-semibold flex items-center justify-center space-x-2 transition-all duration-200 ${
+                            suite.isFlagship 
+                              ? 'bg-pink text-white hover:bg-pink-dark shadow-lg shadow-pink/30' 
+                              : 'border border-pink/50 text-white hover:bg-pink hover:border-pink'
+                          }`}
+                        >
+                          <span>Select Suite</span>
+                          <span>&rarr;</span>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+            </div>
+          </section>
+
+          {/* THE CRAFT / STANDARDS */}
+          <section id="experience" className="py-24 px-6 md:px-12 max-w-7xl mx-auto scroll-mt-20">
+            <div className="text-center max-w-2xl mx-auto mb-16">
+              <span className="font-mono text-xs uppercase tracking-ultra-wide text-pink font-semibold block mb-2">// 02 &bull; The Ethos</span>
+              <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal text-white tracking-tight">The Standards of Craft</h2>
+              <p className="text-graphite text-sm sm:text-base mt-3">Where surgical precision meets sensory relaxation. We obsess over the micro-details so your presence commands effortless respect.</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="border border-[#3B1D5C] p-8 rounded-2xl bg-[#160B24] hover:border-pink/60 transition-all duration-300 relative group">
+                <div className="w-12 h-12 rounded-xl bg-[#200F35] border border-[#3B1D5C] flex items-center justify-center text-pink mb-6 group-hover:bg-pink group-hover:text-white transition-colors duration-300 font-serif text-lg font-bold">
+                  ✂
+                </div>
+                <span className="font-mono text-xs text-graphite/60 tracking-widest uppercase">Standard 01</span>
+                <h3 className="font-serif text-2xl font-normal text-white mt-2 mb-3">Japanese Feather Steel</h3>
+                <p className="text-graphite text-sm leading-relaxed">
+                  Every straight razor shave employs newly unsealed, single-use Feather &reg; platinum-coated Japanese steel blades. Unmatched hygiene and microscopic cutting sharpness that prevents folliculitis.
+                </p>
+                <div className="mt-6 pt-4 border-t border-[#3B1D5C] font-mono text-[11px] text-pink font-semibold uppercase tracking-wider">
+                  0.1mm Precision Tolerance
+                </div>
+              </div>
+
+              <div className="border border-[#3B1D5C] p-8 rounded-2xl bg-[#160B24] hover:border-pink/60 transition-all duration-300 relative group">
+                <div className="w-12 h-12 rounded-xl bg-[#200F35] border border-[#3B1D5C] flex items-center justify-center text-pink mb-6 group-hover:bg-pink group-hover:text-white transition-colors duration-300 font-serif text-lg font-bold">
+                  ✦
+                </div>
+                <span className="font-mono text-xs text-graphite/60 tracking-widest uppercase">Standard 02</span>
+                <h3 className="font-serif text-2xl font-normal text-white mt-2 mb-3">Botanical Scalp Alchemy</h3>
+                <p className="text-graphite text-sm leading-relaxed">
+                  Custom compounded tonics derived from rosemary extract, cedarwood, and organic sea kelp. We test scalp pH prior to washing to balance the dermis and promote follicular vitality.
+                </p>
+                <div className="mt-6 pt-4 border-t border-[#3B1D5C] font-mono text-[11px] text-pink font-semibold uppercase tracking-wider">
+                  Paraben & Sulfate Free
+                </div>
+              </div>
+
+              <div className="border border-[#3B1D5C] p-8 rounded-2xl bg-[#160B24] hover:border-pink/60 transition-all duration-300 relative group">
+                <div className="w-12 h-12 rounded-xl bg-[#200F35] border border-[#3B1D5C] flex items-center justify-center text-pink mb-6 group-hover:bg-pink group-hover:text-white transition-colors duration-300 font-serif text-lg font-bold">
+                  🍸
+                </div>
+                <span className="font-mono text-xs text-graphite/60 tracking-widest uppercase">Standard 03</span>
+                <h3 className="font-serif text-2xl font-normal text-white mt-2 mb-3">Private Acoustic Lounge</h3>
+                <p className="text-graphite text-sm leading-relaxed">
+                  An antidote to chaotic street salons. Enjoy high-fidelity vinyl acoustic playback, private velvet chairs, and complimentary pours of single malt Scotch or Kyoto espresso.
+                </p>
+                <div className="mt-6 pt-4 border-t border-[#3B1D5C] font-mono text-[11px] text-pink font-semibold uppercase tracking-wider">
+                  Curated Vinyl & Library
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* MASTER ARTISANS */}
+          <section id="barbers" className="py-24 bg-[#120722] border-t border-b border-[#3B1D5C] scroll-mt-20">
+            <div className="max-w-7xl mx-auto px-6 md:px-12">
+              <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+                <div>
+                  <span className="font-mono text-xs uppercase tracking-ultra-wide text-pink font-semibold block mb-2">// 03 &bull; The Masters</span>
+                  <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl font-normal text-white tracking-tight">The Master Artisans</h2>
+                  <p className="text-graphite text-sm sm:text-base mt-2">Decades of combined master scissorsmanship, cranial geometry, and razor craft.</p>
+                </div>
+                <p className="font-mono text-xs text-pink uppercase tracking-widest font-semibold">Select an artisan to book directly</p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                {ARTISANS.map((artisan, i) => (
+                  <div key={i} className="bg-[#160B24] rounded-2xl border border-[#3B1D5C] overflow-hidden group hover:border-pink/60 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                      <div className="aspect-[3/4] overflow-hidden bg-[#200F35] relative">
+                        <img 
+                          src={artisan.imageUrl} 
+                          alt={artisan.name} 
+                          className="w-full h-full object-cover object-center grayscale contrast-125 transition-transform duration-700 group-hover:scale-105 opacity-90"
+                        />
+                        <div className="absolute top-3 right-3 bg-pink text-white text-[10px] font-mono px-2.5 py-1 rounded-full uppercase tracking-wider font-bold">
+                          {artisan.chair}
+                        </div>
+                      </div>
+                      <div className="p-6">
+                        <h3 className="font-serif text-2xl font-normal text-white group-hover:text-pink transition-colors">
+                          {artisan.name}
+                        </h3>
+                        <p className="font-mono text-xs text-pink font-medium uppercase tracking-wider mt-1">{artisan.title}</p>
+                        <div className="mt-4 pt-4 border-t border-[#3B1D5C] text-xs text-graphite space-y-1">
+                          <div className="flex justify-between">
+                            <span className="text-graphite/60">Experience:</span>
+                            <span className="font-mono font-medium text-white">{artisan.experience}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-graphite/60">Signature:</span>
+                            <span className="font-mono font-medium text-white">{artisan.signature}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-6 pt-0">
+                      <button 
+                        onClick={() => openBooking({ barber: artisan.name })}
+                        className="w-full py-2.5 rounded-lg border border-pink/40 text-pink hover:bg-pink hover:text-white font-mono text-xs uppercase tracking-wider font-semibold transition-all duration-200"
+                      >
+                        Book with {artisan.name.split(' ')[0]}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* LOCATION & SANCTUARY */}
+          <section id="hours-location" className="py-24 px-6 md:px-12 max-w-7xl mx-auto scroll-mt-20">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+              <div className="lg:col-span-6 space-y-8 flex flex-col justify-between">
+                <div>
+                  <span className="font-mono text-xs uppercase tracking-ultra-wide text-pink font-semibold block mb-2">// 04 &bull; Physical Presence</span>
+                  <h2 className="font-serif text-4xl sm:text-5xl font-normal text-white tracking-tight">The Madison Lounge</h2>
+                  <p className="text-graphite text-sm sm:text-base mt-2">Located discreetly on Madison Avenue with private curbside concierge valet service.</p>
+                </div>
+
+                <div className="space-y-6 border-t border-b border-[#3B1D5C] py-6 font-mono text-xs">
+                  <div className="flex items-start justify-between">
+                    <span className="text-graphite/70 uppercase tracking-wider">Sanctuary Address</span>
+                    <span className="text-right text-white font-sans font-medium">
+                      742 Madison Avenue, Suite 4B<br />
+                      <span className="text-graphite text-xs">Upper East Side, New York, NY 10065</span>
+                    </span>
+                  </div>
+
+                  <div className="flex items-start justify-between">
+                    <span className="text-graphite/70 uppercase tracking-wider">Concierge Line</span>
+                    <div className="text-right">
+                      <a href="tel:+12128449100" className="text-pink hover:underline font-bold">+1 (212) 844-9100</a>
+                      <span className="block text-graphite/70 text-[10px] mt-0.5">VIP Direct & SMS Line</span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start justify-between">
+                    <span className="text-graphite/70 uppercase tracking-wider">Curbside Valet</span>
+                    <span className="text-right text-white font-sans text-xs">Complimentary white-glove valet on 65th St.</span>
+                  </div>
+                </div>
+
+                <div className="bg-[#160B24] border border-[#3B1D5C] rounded-2xl p-6">
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="font-mono text-xs uppercase tracking-wider font-semibold text-white">Operating Schedule</span>
+                    <span className="inline-flex items-center space-x-1.5 text-[11px] font-mono text-pink bg-pink/10 px-2.5 py-1 rounded-full border border-pink/30">
+                      <span className="w-1.5 h-1.5 rounded-full bg-pink"></span>
+                      <span>Accepting Appointments</span>
+                    </span>
+                  </div>
+                  <div className="space-y-2 text-xs font-mono text-graphite">
+                    <div className="flex justify-between pb-1 border-b border-[#3B1D5C]/60">
+                      <span>Monday &ndash; Thursday</span>
+                      <span className="text-white font-medium">09:00 AM &ndash; 08:00 PM</span>
+                    </div>
+                    <div className="flex justify-between pb-1 border-b border-[#3B1D5C]/60">
+                      <span>Friday &ndash; Saturday</span>
+                      <span className="text-white font-medium">08:30 AM &ndash; 09:00 PM</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Sunday</span>
+                      <span className="text-pink font-medium">10:00 AM &ndash; 06:00 PM (By Appointment Only)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Map */}
+              <div className="lg:col-span-6 relative rounded-3xl overflow-hidden border border-[#3B1D5C] shadow-lg bg-[#0E061A] p-8 flex flex-col justify-between min-h-[460px]">
+                <div className="absolute inset-0 opacity-20 pointer-events-none">
+                  <svg width="100%" height="100%">
+                    <defs>
+                      <pattern id="grid-p" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#EC4899" strokeWidth="0.7" />
+                      </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid-p)" />
+                    <path d="M-50,120 L800,280" stroke="#EC4899" strokeWidth="2" />
+                    <path d="M-50,340 L800,100" stroke="#EC4899" strokeWidth="1.5" />
+                    <path d="M260,-50 L240,600" stroke="#EC4899" strokeWidth="2.5" />
+                    <path d="M500,-50 L520,600" stroke="#EC4899" strokeWidth="1.5" />
+                  </svg>
+                </div>
+
+                <div className="relative z-10 flex justify-between items-center text-white/90">
+                  <div className="flex items-center space-x-2 font-mono text-xs">
+                    <span className="text-pink">◎</span>
+                    <span>40.7675&deg; N, 73.9688&deg; W</span>
+                  </div>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-pink bg-pink/10 px-3 py-1 rounded-full border border-pink/30">Manhattan &bull; UES</span>
+                </div>
+
+                <div className="relative z-10 my-auto flex flex-col items-center justify-center text-center">
+                  <div className="relative flex items-center justify-center mb-3">
+                    <span className="absolute w-16 h-16 rounded-full bg-pink/30 animate-ping"></span>
+                    <div className="w-10 h-10 rounded-full bg-pink border-2 border-white flex items-center justify-center text-white shadow-xl">
+                      📍
+                    </div>
+                  </div>
+                  <div className="bg-[#160B24]/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-pink/30 text-white shadow-2xl">
+                    <p className="font-serif text-base tracking-wide">Atelier Carmine &bull; Lounge 4B</p>
+                    <p className="font-mono text-[10px] text-pink uppercase tracking-widest">Discreet Private Elevator Entry</p>
+                  </div>
+                </div>
+
+                <div className="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 pt-6 border-t border-[#3B1D5C]">
+                  <div className="text-graphite font-mono text-xs">
+                    <span>2 min walk from 68 St - Hunter College Station</span>
+                  </div>
+                  <a 
+                    href="https://maps.google.com" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="px-5 py-2.5 rounded-full bg-pink text-white hover:bg-pink-dark transition-all font-mono text-xs uppercase tracking-wider font-semibold shadow-md shadow-pink/20"
+                  >
+                    Open in Maps &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* FOOTER */}
+          <footer className="bg-[#0B0414] border-t border-[#3B1D5C] pt-20 pb-12 relative overflow-hidden">
+            <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 pointer-events-none select-none opacity-[0.05] whitespace-nowrap font-serif text-[18vw] leading-none text-pink uppercase tracking-tighter">
+              CARMINE
+            </div>
+
+            <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+                <div className="lg:col-span-2 space-y-4">
+                  <div className="group flex items-center space-x-3.5 select-none cursor-pointer">
+                    <div className="relative w-9 h-9 flex items-center justify-center">
+                      <svg className="absolute inset-0 w-full h-full logo-ring-rotate" viewBox="0 0 44 44">
+                        <circle cx="22" cy="22" r="20" fill="none" stroke="#EC4899" strokeWidth="1" strokeDasharray="3 5" className="opacity-50 group-hover:opacity-100 transition-opacity" />
+                      </svg>
+                      <div className="logo-monogram-box w-7 h-7 border border-pink/50 flex items-center justify-center font-serif text-sm font-bold bg-[#160B24] text-white">
+                        <span className="logo-monogram-inner">AC</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-serif text-xl tracking-widest uppercase font-medium logo-shimmer-text">Atelier Carmine</span>
+                      <span className="font-mono text-[8px] tracking-ultra-wide uppercase text-graphite group-hover:text-pink transition-colors">Haute Coiffure LLC</span>
+                    </div>
+                  </div>
+                  <p className="text-graphite text-xs sm:text-sm max-w-sm leading-relaxed">
+                    New York's premier sanctuary for tailored cranial architecture, Japanese straight razor rituals, and private bespoke restorative care.
+                  </p>
+                  <div className="font-mono text-xs text-pink pt-2 flex items-center space-x-2">
+                    <span className="w-2 h-2 rounded-full bg-pink"></span>
+                    <span className="text-graphite">{currentTimeStr || 'New York Time (EST)'}</span>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-mono text-xs uppercase tracking-widest text-white font-bold mb-4">Navigation</h4>
+                  <ul className="space-y-2.5 font-mono text-xs text-graphite">
+                    <li><a href="#services" className="hover:text-pink">Curated Services</a></li>
+                    <li><a href="#packages" className="hover:text-pink">Signature Suites</a></li>
+                    <li><a href="#experience" className="hover:text-pink">The Japanese Steel Craft</a></li>
+                    <li><a href="#barbers" className="hover:text-pink">Master Artisans</a></li>
+                    <li><a href="#hours-location" className="hover:text-pink">Sanctuary & Valet</a></li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-mono text-xs uppercase tracking-widest text-white font-bold mb-4">Ritual Suites</h4>
+                  <ul className="space-y-2.5 font-mono text-xs text-graphite">
+                    <li><a href="#packages" className="hover:text-pink">The Executive Ritual ($185)</a></li>
+                    <li><a href="#packages" className="hover:text-pink">The Groom's Delegation ($260)</a></li>
+                    <li><a href="#packages" className="hover:text-pink">Quick Refresher ($95)</a></li>
+                    <li><a href="#services" className="hover:text-pink">Japanese Head Spa</a></li>
+                    <li><a href="#services" className="hover:text-pink">Grey Blending Camouflage</a></li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-mono text-xs uppercase tracking-widest text-white font-bold mb-4">Concierge</h4>
+                  <ul className="space-y-2.5 font-mono text-xs text-graphite">
+                    <li><a href="tel:+12128449100" className="hover:text-pink">VIP Line: (212) 844-9100</a></li>
+                    <li><a href="mailto:concierge@ateliercarmine.com" className="hover:text-pink">Private Lounge Buyouts</a></li>
+                    <li><a href="mailto:events@ateliercarmine.com" className="hover:text-pink">Wedding Delegation Prep</a></li>
+                    <li><a href="#" className="hover:text-pink">Gift Ceremonies & Black Card</a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="border-t border-[#3B1D5C] pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-graphite/70 gap-4">
+                <div>
+                  &copy; {new Date().getFullYear()} Atelier Carmine Haute Coiffure LLC. All Rights Reserved.
+                </div>
+                <div className="flex items-center space-x-6">
+                  <a href="#" className="hover:text-pink">Privacy Protocol</a>
+                  <a href="#" className="hover:text-pink">Terms of Sanctuary</a>
+                  <a href="#" className="hover:text-pink">Accessibility Standards</a>
+                </div>
+              </div>
+            </div>
+          </footer>
+
+          {/* BOOKING DRAWER MODAL */}
+          {bookingDrawerOpen && (
+            <div className="fixed inset-0 z-50 overflow-hidden">
+              <div onClick={closeBooking} className="fixed inset-0 bg-[#07020E]/80 backdrop-blur-md transition-opacity"></div>
+              
+              <aside className="fixed top-0 right-0 bottom-0 w-full sm:max-w-xl bg-[#160B24] border-l border-[#3B1D5C] shadow-2xl flex flex-col justify-between overflow-hidden z-10 text-white">
+                <div className="p-6 border-b border-[#3B1D5C] flex items-center justify-between bg-[#120722]">
+                  <div>
+                    <span className="font-mono text-[10px] text-pink font-semibold uppercase tracking-widest">// Private Reservation</span>
+                    <h3 className="font-serif text-2xl font-normal text-white">Reserve Your Chair</h3>
+                  </div>
+                  <button onClick={closeBooking} className="p-2 text-graphite hover:text-pink font-mono text-lg">✕</button>
+                </div>
+
+                {/* Progress */}
+                {bookingStep <= 4 && (
+                  <div className="px-6 py-3 bg-[#120722] border-b border-[#3B1D5C] flex items-center justify-between font-mono text-[11px]">
+                    {[
+                      { s: 1, l: 'Service' },
+                      { s: 2, l: 'Date & Time' },
+                      { s: 3, l: 'Artisan' },
+                      { s: 4, l: 'Confirm' }
+                    ].map(stepItem => (
+                      <div key={stepItem.s} className={`flex items-center space-x-1.5 ${
+                        bookingStep === stepItem.s ? 'text-pink font-semibold' : bookingStep > stepItem.s ? 'text-white font-medium' : 'text-graphite/40'
+                      }`}>
+                        <span className={`w-5 h-5 rounded-full border flex items-center justify-center text-[10px] ${
+                          bookingStep === stepItem.s ? 'border-pink bg-pink/20' : 'border-[#3B1D5C]'
+                        }`}>
+                          {bookingStep > stepItem.s ? '✓' : stepItem.s}
+                        </span>
+                        <span>{stepItem.l}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Content */}
+                <div className="flex-1 overflow-y-auto p-6 space-y-6">
+                  
+                  {/* Step 1: Addons & Summary */}
+                  {bookingStep === 1 && (
+                    <div className="space-y-6">
+                      <div>
+                        <label className="font-mono text-xs uppercase text-graphite block mb-2 font-medium">Selected Service or Suite</label>
+                        <div className="border border-pink/40 rounded-xl p-4 bg-[#200F35] flex justify-between items-center">
+                          <div>
+                            <p className="font-serif text-xl font-normal text-white">{selectedService.name}</p>
+                            <div className="flex items-center space-x-3 text-xs font-mono text-graphite mt-1">
+                              <span>{selectedService.duration}</span>
+                              <span>&bull;</span>
+                              <span>{selectedService.category}</span>
+                            </div>
+                          </div>
+                          <span className="font-mono text-xl font-bold text-pink">${selectedService.price}</span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="font-mono text-xs uppercase text-graphite block mb-2 font-medium">Elevate Your Appointment (Add-ons)</label>
+                        <div className="space-y-3 font-mono text-xs">
+                          {ADDONS.map(addon => {
+                            const isChecked = selectedAddons.includes(addon.id);
+                            return (
+                              <label key={addon.id} className={`flex items-center justify-between p-3.5 border rounded-xl cursor-pointer transition-colors ${
+                                isChecked ? 'border-pink bg-pink/15' : 'border-[#3B1D5C] bg-[#160B24] hover:border-pink/50'
+                              }`}>
+                                <div className="flex items-center space-x-3">
+                                  <input 
+                                    type="checkbox" 
+                                    checked={isChecked} 
+                                    onChange={() => toggleAddon(addon.id)} 
+                                    className="w-4 h-4 accent-pink rounded"
+                                  />
+                                  <div>
+                                    <span className="block font-sans text-xs font-medium text-white">{addon.name}</span>
+                                    <span className="text-[10px] text-graphite">{addon.duration}</span>
+                                  </div>
+                                </div>
+                                <span className="text-pink font-semibold">+${addon.price}</span>
+                              </label>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-xl bg-pink/10 border border-pink/30 text-xs text-graphite">
+                        All appointments include complimentary Kyoto cold brew or single malt Scotch in the lounge.
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 2: Date & Time */}
+                  {bookingStep === 2 && (
+                    <div className="space-y-6">
+                      <div>
+                        <label className="font-mono text-xs uppercase text-graphite block mb-2 font-medium">Select Preferred Date</label>
+                        <div className="grid grid-cols-4 gap-2 font-mono text-xs">
+                          {['Today (Nov 3)', 'Wed (Nov 4)', 'Thu (Nov 5)', 'Fri (Nov 6)'].map(d => (
+                            <button
+                              key={d}
+                              onClick={() => setSelectedDate(d)}
+                              className={`p-3 text-center rounded-xl border transition-all ${
+                                selectedDate === d ? 'border-pink bg-pink/20 text-pink font-bold' : 'border-[#3B1D5C] bg-[#160B24] hover:border-pink/50 text-white'
+                              }`}
+                            >
+                              <span className="block text-[10px] uppercase text-graphite/70">{d.split(' ')[0]}</span>
+                              <span className="block text-sm font-semibold mt-0.5">{d.split(' ')[1]}</span>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="font-mono text-xs uppercase text-graphite block mb-2 font-medium">Available Timeslots (Live Sync)</label>
+                        <div className="grid grid-cols-3 gap-2 font-mono text-xs">
+                          {['10:00 AM', '11:30 AM', '01:00 PM', '02:30 PM', '04:00 PM', '05:30 PM', '07:00 PM', '08:15 PM'].map(t => (
+                            <button
+                              key={t}
+                              onClick={() => setSelectedTime(t)}
+                              className={`py-2.5 px-3 text-center rounded-xl border transition-all ${
+                                selectedTime === t ? 'border-pink bg-pink text-white font-bold shadow-lg shadow-pink/30' : 'border-[#3B1D5C] bg-[#160B24] hover:border-pink/50 text-graphite'
+                              }`}
+                            >
+                              {t}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 3: Artisan */}
+                  {bookingStep === 3 && (
+                    <div className="space-y-4">
+                      <label className="font-mono text-xs uppercase text-graphite block font-medium">Select Master Artisan</label>
+                      <div className="space-y-3 font-mono text-xs">
+                        {ARTISANS.map((a, i) => (
+                          <label key={i} className={`flex items-center justify-between p-3.5 border rounded-xl cursor-pointer transition-all ${
+                            selectedBarber === a.name ? 'border-pink bg-pink/20' : 'border-[#3B1D5C] bg-[#160B24] hover:border-pink/50'
+                          }`}>
+                            <div className="flex items-center space-x-3">
+                              <input 
+                                type="radio" 
+                                name="barber_radio" 
+                                checked={selectedBarber === a.name} 
+                                onChange={() => setSelectedBarber(a.name)} 
+                                className="w-4 h-4 accent-pink"
+                              />
+                              <div>
+                                <span className="block font-sans text-xs font-semibold text-white">{a.name}</span>
+                                <span className="text-[10px] text-pink-light">{a.title} &bull; {a.chair}</span>
+                              </div>
+                            </div>
+                            <span className="text-[10px] font-mono text-graphite bg-[#200F35] px-2 py-0.5 rounded border border-[#3B1D5C]">{a.experience}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 4: Contact & Summary */}
+                  {bookingStep === 4 && (
+                    <div className="space-y-6">
+                      <div>
+                        <h4 className="font-serif text-xl font-normal text-white mb-1">Guest Information</h4>
+                        <p className="text-graphite text-xs">A confirmation SMS & calendar invite will be dispatched upon booking.</p>
+                      </div>
+
+                      <div className="space-y-4 font-mono text-xs">
+                        <div>
+                          <label className="block text-graphite uppercase mb-1">Full Name *</label>
+                          <input 
+                            type="text" 
+                            value={clientInfo.name} 
+                            onChange={e => setClientInfo({ ...clientInfo, name: e.target.value })} 
+                            placeholder="Lord / Mr. Alexander Sterling" 
+                            className="w-full px-4 py-3 border border-[#3B1D5C] rounded-xl focus:border-pink focus:outline-none bg-[#200F35] font-sans text-sm text-white"
+                          />
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-graphite uppercase mb-1">Mobile Phone (SMS) *</label>
+                            <input 
+                              type="tel" 
+                              value={clientInfo.phone} 
+                              onChange={e => setClientInfo({ ...clientInfo, phone: e.target.value })} 
+                              placeholder="+1 (212) 555-0199" 
+                              className="w-full px-4 py-3 border border-[#3B1D5C] rounded-xl focus:border-pink focus:outline-none bg-[#200F35] font-sans text-sm text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-graphite uppercase mb-1">Email Address *</label>
+                            <input 
+                              type="email" 
+                              value={clientInfo.email} 
+                              onChange={e => setClientInfo({ ...clientInfo, email: e.target.value })} 
+                              placeholder="alexander@domain.com" 
+                              className="w-full px-4 py-3 border border-[#3B1D5C] rounded-xl focus:border-pink focus:outline-none bg-[#200F35] font-sans text-sm text-white"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-graphite uppercase mb-1">Bespoke Requests (Beverage preference, Quiet Chair)</label>
+                          <textarea 
+                            rows="2" 
+                            value={clientInfo.notes} 
+                            onChange={e => setClientInfo({ ...clientInfo, notes: e.target.value })} 
+                            placeholder="e.g. Quiet chair session preferred, single cube Yamazaki 12." 
+                            className="w-full px-4 py-3 border border-[#3B1D5C] rounded-xl focus:border-pink focus:outline-none bg-[#200F35] font-sans text-sm text-white"
+                          ></textarea>
+                        </div>
+                      </div>
+
+                      <div className="border border-pink/40 rounded-xl p-4 bg-[#200F35] text-xs font-mono space-y-2">
+                        <div className="flex justify-between">
+                          <span className="text-graphite">Service:</span>
+                          <span className="font-bold text-white font-sans">{selectedService.name}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-graphite">Artisan:</span>
+                          <span className="font-bold text-pink">{selectedBarber}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-graphite">Date & Time:</span>
+                          <span className="font-bold text-white">{selectedDate} at {selectedTime}</span>
+                        </div>
+                        <div className="flex justify-between pt-2 border-t border-[#3B1D5C] text-sm">
+                          <span className="font-bold text-white">Total Investment:</span>
+                          <span className="font-bold text-pink font-mono text-base">${totalInvestment}</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Step 5: Success */}
+                  {bookingStep === 5 && (
+                    <div className="text-center py-12 space-y-6">
+                      <div className="w-16 h-16 rounded-full bg-pink/20 text-pink border border-pink flex items-center justify-center mx-auto text-2xl font-bold shadow-lg shadow-pink/30">
+                        ✓
+                      </div>
+                      <div className="space-y-2">
+                        <span className="font-mono text-xs uppercase tracking-ultra-wide text-pink font-semibold">Reservation Confirmed</span>
+                        <h4 className="font-serif text-3xl font-normal text-white">Your Chair Awaits</h4>
+                        <p className="text-graphite text-xs sm:text-sm max-w-sm mx-auto">
+                          Reservation <span className="font-mono font-bold text-pink">#AC-8842</span> has been registered. Our concierge will welcome you upon arrival on Madison Ave.
+                        </p>
+                      </div>
+
+                      <div className="p-4 rounded-xl bg-[#200F35] border border-[#3B1D5C] text-left max-w-xs mx-auto text-xs font-mono space-y-1.5">
+                        <div className="flex justify-between"><span className="text-graphite">Chair:</span><span className="text-white">{selectedBarber}</span></div>
+                        <div className="flex justify-between"><span className="text-graphite">Schedule:</span><span className="text-white">{selectedDate} at {selectedTime}</span></div>
+                        <div className="flex justify-between"><span className="text-graphite">Concierge Valet:</span><span className="text-pink">Madison & 65th St</span></div>
+                      </div>
+
+                      <button onClick={closeBooking} className="px-8 py-3 bg-pink text-white rounded-full font-mono text-xs uppercase tracking-widest hover:bg-pink-dark transition-colors font-bold shadow-lg shadow-pink/30">
+                        Return to Sanctuary
+                      </button>
+                    </div>
+                  )}
+
+                </div>
+
+                {/* Footer Controls */}
+                {bookingStep <= 4 && (
+                  <div className="p-6 border-t border-[#3B1D5C] bg-[#120722] flex items-center justify-between">
+                    {bookingStep > 1 ? (
+                      <button 
+                        onClick={() => setBookingStep(bookingStep - 1)} 
+                        className="px-4 py-2.5 rounded-xl border border-[#3B1D5C] text-graphite hover:text-white font-mono text-xs uppercase tracking-wider"
+                      >
+                        Back
+                      </button>
+                    ) : <div></div>}
+
+                    <div className="flex items-center space-x-4 ml-auto">
+                      <div className="text-right">
+                        <span className="block text-[10px] font-mono uppercase text-graphite">Estimated Investment</span>
+                        <span className="font-mono text-lg font-bold text-pink">${totalInvestment}</span>
+                      </div>
+                      <button 
+                        onClick={() => setBookingStep(bookingStep + 1)} 
+                        className="px-6 py-3 rounded-full bg-pink hover:bg-pink-dark text-white font-mono text-xs uppercase tracking-widest font-semibold flex items-center space-x-2 shadow-lg shadow-pink/30 transition-all active:scale-95"
+                      >
+                        <span>
+                          {bookingStep === 1 && 'Choose Date & Time'}
+                          {bookingStep === 2 && 'Select Artisan'}
+                          {bookingStep === 3 && 'Contact Details'}
+                          {bookingStep === 4 && 'Confirm Reservation'}
+                        </span>
+                        <span>&rarr;</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </aside>
+            </div>
+          )}
+
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+
+</body>
+</html>
