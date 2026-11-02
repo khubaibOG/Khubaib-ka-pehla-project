@@ -51,6 +51,7 @@ export interface BookingState {
   selectedBarber: string;
   clientInfo: {
     fullName: string;
+    name?: string;
     phone: string;
     email: string;
     notes: string;

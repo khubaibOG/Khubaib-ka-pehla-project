@@ -6,7 +6,7 @@ import { X, Info, CheckCheck, ArrowRight } from 'lucide-react';
 interface BookingDrawerProps {
   booking: BookingState;
   onClose: () => void;
-  setBooking: React.Dispatch<React.SetStateAction<BookingState>>;
+  setBooking: React.Dispatch<React.SetStateAction<BookingState>> | ((updater: (prev: BookingState) => BookingState) => void);
 }
 
 export const BookingDrawer: React.FC<BookingDrawerProps> = ({
@@ -19,6 +19,7 @@ export const BookingDrawer: React.FC<BookingDrawerProps> = ({
   const [time, setTime] = useState<string>(booking.selectedTime || '02:30 PM');
   const [barber, setBarber] = useState<string>(booking.selectedBarber || 'Kenji Takahashi');
   const [client, setClient] = useState({
+    fullName: '',
     name: '',
     phone: '',
     email: '',
@@ -278,8 +279,8 @@ export const BookingDrawer: React.FC<BookingDrawerProps> = ({
                   <label className="block text-graphite uppercase mb-1">Full Name *</label>
                   <input 
                     type="text" 
-                    value={client.name} 
-                    onChange={e => setClient({ ...client, name: e.target.value })} 
+                    value={client.fullName || client.name} 
+                    onChange={e => setClient({ ...client, fullName: e.target.value, name: e.target.value })} 
                     placeholder="Mr. Alexander Sterling" 
                     className="w-full px-4 py-3 border border-[#3B1D5C] rounded-xl focus:border-pink focus:outline-none bg-[#200F35] font-sans text-sm text-white"
                   />
