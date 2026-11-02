@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
     <footer className="bg-white border-t border-hairline pt-20 pb-12 relative overflow-hidden">
       {/* Background Brand Watermark */}
       <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 pointer-events-none select-none opacity-[0.03] whitespace-nowrap font-serif text-[18vw] leading-none text-obsidian uppercase tracking-tighter">
-        CARMINE
+        OG BARBER
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -39,11 +39,11 @@ export const Footer: React.FC = () => {
                   <circle cx="22" cy="22" r="20" fill="none" stroke="#B91C1C" strokeWidth="1" strokeDasharray="3 5" className="opacity-50 group-hover:opacity-100 transition-opacity" />
                 </svg>
                 <div className="logo-monogram-box w-7 h-7 border border-obsidian flex items-center justify-center font-serif text-sm font-bold bg-white">
-                  <span className="logo-monogram-inner">AC</span>
+                  <span className="logo-monogram-inner">OG</span>
                 </div>
               </div>
               <div className="flex flex-col">
-                <span className="font-serif text-xl tracking-widest uppercase font-medium logo-shimmer-text">Atelier Carmine</span>
+                <span className="font-serif text-xl tracking-widest uppercase font-medium logo-shimmer-text">OG Barber</span>
                 <span className="font-mono text-[8px] tracking-ultra-wide uppercase text-graphite/70 group-hover:text-carmine transition-colors">Haute Coiffure LLC</span>
               </div>
             </div>
@@ -96,7 +96,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="border-t border-hairline pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-graphite/70 gap-4">
           <div>
-            &copy; {new Date().getFullYear()} Atelier Carmine Haute Coiffure LLC. All Rights Reserved.
+            &copy; {new Date().getFullYear()} OG Barber Haute Coiffure LLC. All Rights Reserved.
           </div>
           <div className="flex items-center space-x-6">
             <a href="#" className="hover:text-carmine">Privacy Protocol</a>

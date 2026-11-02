@@ -40,7 +40,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Central Monogram Diamond Box with 3D rotation & scale spring */}
             <div className="logo-monogram-box relative w-8 h-8 border border-obsidian/90 bg-white/80 backdrop-blur-sm flex items-center justify-center font-serif text-base tracking-wider font-bold">
               <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-carmine rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping transition-opacity duration-300"></span>
-              <span className="logo-monogram-inner transition-transform duration-500 inline-block">AC</span>
+              <span className="logo-monogram-inner transition-transform duration-500 inline-block">OG</span>
             </div>
           </div>
 
@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex flex-col">
             <div className="flex items-center space-x-1.5">
               <span className="font-serif text-xl tracking-widest-bespoke uppercase font-medium leading-none logo-shimmer-text">
-                Atelier Carmine
+                OG Barber
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-carmine transform scale-75 group-hover:scale-125 transition-transform duration-300"></span>
             </div>
@@ -104,8 +104,8 @@ export const Header: React.FC<HeaderProps> = ({
       }`}>
         <div className="flex justify-between items-center border-b border-hairline pb-6">
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 border border-obsidian flex items-center justify-center font-serif text-base font-bold">AC</div>
-            <span className="font-serif text-lg tracking-widest uppercase">Atelier Carmine</span>
+            <div className="w-8 h-8 border border-obsidian flex items-center justify-center font-serif text-base font-bold">OG</div>
+            <span className="font-serif text-lg tracking-widest uppercase">OG Barber</span>
           </div>
           <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-obsidian hover:text-carmine">
             <X className="w-6 h-6" />

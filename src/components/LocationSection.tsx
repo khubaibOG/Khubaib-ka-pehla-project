@@ -96,7 +96,7 @@ export const LocationSection: React.FC = () => {
               </div>
             </div>
             <div className="bg-[#160B24]/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-pink/30 text-white shadow-2xl">
-              <p className="font-serif text-base tracking-wide">Atelier Carmine &bull; Lounge 4B</p>
+              <p className="font-serif text-base tracking-wide">OG Barber &bull; Lounge 4B</p>
               <p className="font-mono text-[10px] text-pink uppercase tracking-widest">Discreet Private Elevator Entry</p>
             </div>
           </div>
